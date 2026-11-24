@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspiración - Beauty Bar USA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0f0f0f;color:#fff;padding:20px}
+h1{text-align:center;font-size:28px} h1 span{color:#FFDCA8}
+p.sub{text-align:center;color:#aaa;margin:8px 0 20px}
+.filt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.filt button{padding:10px 18px;border-radius:100px;border:1px solid #333;background:#1e1e1e;color:#fff;cursor:pointer;font-weight:700}
+.filt button.active{background:#FFDCA8;color:#000}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:1000px;margin:0 auto}
+@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:#1e1e1e;border-radius:20px;overflow:hidden;text-decoration:none;color:#fff;display:block}
+.card img{width:100%;height:150px;object-fit:cover}
+.card div{padding:14px}
+.card b{font-size:15px}
+.card p{font-size:12px;color:#aaa;margin:6px 0 10px;line-height:1.5}
+.tag{display:inline-block;background:#FFDCA8;color:#000;font-size:11px;font-weight:800;padding:4px 10px;border-radius:100px}
+.open{display:block;text-align:center;background:#FFDCA8;color:#000;font-weight:800;padding:10px;border-radius:10px;margin-top:10px;font-size:13px}
+.note{max-width:1000px;margin:20px auto;text-align:center;color:#888;font-size:13px}
+</style></head>
+<body>
+<h1>✨ Museo de Ideas <span>Beauty Bar</span></h1>
+<p class="sub">Tocá VER PÁGINA para ver la web real. Fijate qué copiar: colores, fotos, botón, precios.</p>
+
+<div class="filt">
+<button class="active" onclick="filtrar('todo',this)">TODO</button>
+<button onclick="filtrar('lash',this)">PESTAÑAS</button>
+<button onclick="filtrar('brow',this)">CEJAS</button>
+<button onclick="filtrar('nails',this)">UÑAS</button>
+<button onclick="filtrar('lujo',this)">LUJO</button>
+</div>
+
+<div class="grid" id="grid"></div>
+<p class="note">Tip de socio: Cuando veas una que te guste, tomale captura y me la mandás. Yo te digo qué copiar y qué mejorar.</p>
+
+<script>
+const sitios=[
+{n:"Lashify - USA",c:"lash",img:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600",d:"La reina de pestañas en USA. Fotos grandes, precios claros, botón gigante de COMPRAR.",link:"https://lashify.com",tag:"PESTAÑAS"},
+{n:"Benefit Brows",c:"brow",img:"https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=600",d:"Cejas divertidas, rosado, muy femenino. Ideal para copiar el tono.",link:"https://www.benefitcosmetics.com/en-us/brows",tag:"CEJAS"},
+{n:"OPI Nails",c:"nails",img:"https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600",d:"Uñas pro. Colores de moda, galería limpia, se siente caro.",link:"https://www.opi.com",tag:"UÑAS"},
+{n:"Amazing Lash Studio",c:"lash",img:"https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=600",d:"Estudio real en USA. Reservar en 1 click. Así queremos Beauty Bar.",link:"https://amazinglashstudio.com",tag:"PESTAÑAS"},
+{n:"The Lash Lounge",c:"lash",img:"https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600",d:"Lujo, fotos de antes/después, membresías. Copiar su estructura.",link:"https://www.thelashlounge.com",tag:"LUJO"},
+{n:"European Wax Center",c:"brow",img:"https://images.unsplash.com/photo-1567721913486-6585f069b332?w=600",d:"Cadena grande. Muy simple: Servicio - Precio - Reservar. Sin vueltas.",link:"https://www.waxcenter.com",tag:"CEJAS"},
+{n:"Glamnetic Lashes",c:"lash",img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600",d:"Vende por TikTok. Videos cortos, colores fuertes, se siente joven.",link:"https://glamnetic.com",tag:"PESTAÑAS"},
+{n:"Olive & June Nails",c:"nails",img:"https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600",d:"Uñas estilo California. Pastel, limpio, fotos que dan ganas de ir.",link:"https://oliveandjune.com",tag:"UÑAS"},
+{n:"Browhaus",c:"brow",img:"https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600",d:"Solo cejas. Minimalista, caro, mucho blanco y dorado.",link:"https://www.browhaus.com",tag:"LUJO"},
+{n:"Sugarlash PRO",c:"lash",img:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600",d:"Para profesionales. Enseña cursos, vende productos. Idea para cursos tuyos.",link:"https://sugarlashpro.com",tag:"LUJO"},
+{n:"Dashing Diva Nails",c:"nails",img:"https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=600",d:"Uñas rápidas, colores vivos, precios por todos lados.",link:"https://dashingdiva.com",tag:"UÑAS"},
+{n:"Blink Brow Bar",c:"brow",img:"https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600",d:"En Londres, pero estilo USA. Perfecto para copiar el hero.",link:"https://blinkbrowbar.com",tag:"CEJAS"},
+];
+function mostrar(f){
+let g=document.getElementById('grid');g.innerHTML='';
+sitios.filter(s=>f=='todo'||s.c==f||s.tag.toLowerCase().includes(f)).forEach(s=>{
+g.innerHTML+=`<a class="card" href="${s.link}" target="_blank"><img src="${s.img}"><div><b>${s.n}</b><p>${s.d}</p><span class="tag">${s.tag}</span><span class="open">VER PÁGINA REAL →</span></div></a>`;
+});
+}
+function filtrar(f,btn){document.querySelectorAll('.filt button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mostrar(f);window.scrollTo({top:0,behavior:'smooth'});}
+mostrar('todo');
+</script>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LashLux | Beauty Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Segoe UI',sans-serif}
+html{scroll-behavior:smooth}
+#servicios,#pestanas,#unas,#cejas{scroll-margin-top:130px}
+body{background:#E6D9FF}
+:root{--gold:#D4AF37;--gold-light:#F0D98C;--ink:#1B1220}
+.nav{position:sticky;top:14px;margin:14px auto;max-width:calc(100% - 28px);background:rgba(22,13,26,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 35px rgba(0,0,0,.3);border-radius:18px;padding:12px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;z-index:100}
+.nav .logo{color:#fff;font-size:24px;font-weight:800;letter-spacing:.06em;font-family:'Playfair Display',Georgia,serif}
+.nav .logo span{background:linear-gradient(120deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav .links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.nav .links a{color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding-bottom:2px;border-bottom:2px solid transparent;transition:.2s}
+.nav .links a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+.nav .links a.cta{background:linear-gradient(120deg,var(--gold-light),var(--gold));color:#1B1220;padding:8px 18px;border-radius:20px;font-weight:800}
+.lang-btn{background:transparent;border:1px solid rgba(212,175,55,.6);color:var(--gold-light);font-weight:700;font-size:13px;letter-spacing:.08em;padding:7px 14px;border-radius:20px;cursor:pointer;transition:.25s}
+.lang-btn:hover{background:rgba(212,175,55,.15)}
+.hero{display:flex;flex-wrap:wrap;min-height:90vh;background:linear-gradient(125deg,#171021 0%,#251627 55%,#100a14 100%);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 75% 20%,rgba(212,175,55,.08),transparent 55%);pointer-events:none}
+.hero-text{flex:1;min-width:300px;padding:60px 50px;color:#fff;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.eyebrow{color:var(--gold-light);font-size:13px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px}
+.hero-text h1.brand{font-family:'Playfair Display',Georgia,serif;font-size:72px;line-height:1;font-weight:700;letter-spacing:.02em;background:linear-gradient(115deg,#F7E7B0 0%,var(--gold) 45%,#B8912F 80%,#F0D98C 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-text .tagline{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:24px;color:#E9DCC8;margin:18px 0 6px;opacity:.95}
+.hero-text p.sub{margin:18px 0 32px;font-size:17px;opacity:.75;max-width:460px;line-height:1.6}
+.btn{display:inline-block;background:linear-gradient(120deg,var(--gold-light),var(--gold));color:#1B1220;padding:15px 32px;border-radius:30px;font-weight:800;text-decoration:none;width:fit-content;letter-spacing:.02em;transition:.25s;box-shadow:0 8px 25px rgba(212,175,55,.25)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(212,175,55,.35)}
+.hero-img{flex:1;min-width:300px;position:relative}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,16,33,.55),transparent 35%)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:30px;max-width:1100px;margin:auto}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.card img{width:100%;height:200px;object-fit:cover}
+.card-body{padding:20px}
+.card-body h3{color:#4B2E6B}
+.price{color:#E8A020;font-weight:800;font-size:20px;margin:10px 0}
+.small{font-size:14px;color:#666;margin-bottom:10px}
+.card-body a{display:block;text-align:center;background:#4B2E6B;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:700}
+.section{max-width:1100px;margin:auto;padding:20px 30px}
+.section h2{color:#4B2E6B;font-size:32px;margin-bottom:20px;text-align:center}
+.testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.testi{background:#fff;padding:20px;border-radius:20px}
+.info{background:#fff;border-radius:20px;padding:30px;text-align:center;margin:20px 30px}
+.info iframe{width:100%;height:280px;border:0;border-radius:15px;margin-top:20px}
+.footer{text-align:center;padding:40px 20px;background:#4B2E6B;color:#fff}
+.footer a{color:#FF9EC6;text-decoration:none}
+.footer .legal{font-size:13px;opacity:.8;margin-top:15px;line-height:1.6}
+.footer .credit{margin-top:15px;font-weight:800;color:#FF9EC6}
+.whats{position:fixed;bottom:20px;right:20px;width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:99;background:linear-gradient(145deg,#2FE06B,#1EBE57 50%,#128C3A);box-shadow:0 10px 25px rgba(0,0,0,.35), inset 0 3px 6px rgba(255,255,255,.4), inset 0 -4px 8px rgba(0,0,0,.2)}
+.whats svg{width:38px;height:38px}
+@media(max-width:700px){.hero-text{padding:40px 24px}.hero-text h1.brand{font-size:52px}}
+</style>
+</head>
+<body>
+<div class="nav"><div class="logo">LASH<span>LUX</span></div><div class="links"><a href="#" data-i18n="nav.home">Inicio</a><a href="#servicios" onclick="showAll()" data-i18n="nav.services">Servicios</a><a href="#servicios" data-cat="pestanas" onclick="go('pestanas');return false" data-i18n="nav.lashes">Pestañas</a><a href="#servicios" data-cat="cejas" onclick="go('cejas');return false" data-i18n="nav.brows">Cejas</a><a href="#servicios" data-cat="unas" onclick="go('unas');return false" data-i18n="nav.nails">Uñas</a><a href="#servicios" data-i18n="nav.prices">Precios</a><button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button><a class="cta" href="https://wa.me/16503074574?text=Hola%20quiero%20reservar" data-i18n="nav.book">Reservar</a></div></div>
+<a class="whats" href="https://wa.me/16503074574?text=Hola%20quiero%20reservar"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.9 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/></svg></a>
+<div class="hero"><div class="hero-text"><span class="eyebrow" data-i18n="hero.eyebrow">Estudio de Belleza Premium</span><h1 class="brand">LashLux</h1><p class="tagline" data-i18n="hero.tagline">Belleza refinada. Elegancia impecable.</p><p class="sub" data-i18n="hero.sub">Extensiones de pestañas, diseño de cejas y nail art de autor. Reserva tu cita en segundos.</p><a class="btn" href="https://wa.me/16503074574?text=Hola%20quiero%20reservar" data-i18n="hero.cta">Reservar por WhatsApp</a></div><div class="hero-img"><img src="https://images.pexels.com/photos/5128220/pexels-photo-5128220.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Aplicación profesional de extensiones de pestañas"></div></div>
+<div class="section" style="padding-bottom:0"><h2 data-i18n="serv.h2">Nuestros Servicios</h2></div>
+<div id="servicios">
+<div class="grid" id="pestanas"><div class="card"><img src="pestanas.jpg"><div class="card-body"><h3 data-i18n="c1t">Extensiones Clásicas</h3><div class="price">$65</div><div class="small" data-i18n="c1s">⏱ 1h 30min • Retoque $35</div><a href="https://wa.me/16503074574?text=Quiero%20Extensiones%20Clásicas" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/33723106/pexels-photo-33723106.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c2t">Volumen Híbrido</h3><div class="price">$85</div><div class="small" data-i18n="c2s">⏱ 2h • Retoque $45</div><a href="https://wa.me/16503074574?text=Quiero%20Volumen%20Híbrido" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/36930354/pexels-photo-36930354.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c3t">Lifting de Pestañas</h3><div class="price">$55</div><div class="small" data-i18n="c3s">⏱ 1h • Dura 6 semanas</div><a href="https://wa.me/16503074574?text=Quiero%20Lifting" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/38194459/pexels-photo-38194459.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c8t">Mega Volumen</h3><div class="price">$95</div><div class="small" data-i18n="c8s">⏱ 2h 30min • Retoque $55</div><a href="https://wa.me/16503074574?text=Quiero%20Mega%20Volumen" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/7755523/pexels-photo-7755523.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c9t">Efecto Wispy</h3><div class="price">$75</div><div class="small" data-i18n="c9s">⏱ 1h 45min • Retoque $40</div><a href="https://wa.me/16503074574?text=Quiero%20Efecto%20Wispy" data-i18n="book">Reservar</a></div></div></div>
+<div class="grid" id="unas" style="display:none"><div class="card"><img src="unas.jpg"><div class="card-body"><h3 data-i18n="c4t">Manicure + Gel</h3><div class="price">$45</div><div class="small" data-i18n="c4s">⏱ 1h • Brillo perfecto</div><a href="https://wa.me/16503074574?text=Quiero%20Manicure" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/29877719/pexels-photo-29877719.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c5t">Acrílicas</h3><div class="price">$70</div><div class="small" data-i18n="c5s">⏱ 1h 30min • Diseño incluido</div><a href="https://wa.me/16503074574?text=Quiero%20Acrílicas" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/22668324/pexels-photo-22668324.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c10t">Nail Art</h3><div class="price">$55</div><div class="small" data-i18n="c10s">⏱ 1h 15min • Diseño personalizado</div><a href="https://wa.me/16503074574?text=Quiero%20Nail%20Art" data-i18n="book">Reservar</a></div></div></div>
+<div class="grid" id="cejas" style="display:none"><div class="card"><img src="cejas.jpg"><div class="card-body"><h3 data-i18n="c6t">Diseño de Cejas</h3><div class="price">$35</div><div class="small" data-i18n="c6s">⏱ 45min • Perfilado perfecto</div><a href="https://wa.me/16503074574?text=Quiero%20Cejas" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/6953617/pexels-photo-6953617.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c7t">Laminado</h3><div class="price">$60</div><div class="small" data-i18n="c7s">⏱ 1h • Efecto peinado</div><a href="https://wa.me/16503074574?text=Quiero%20Laminado" data-i18n="book">Reservar</a></div></div><div class="card"><img src="https://images.pexels.com/photos/5177993/pexels-photo-5177993.jpeg?auto=compress&cs=tinysrgb&w=800"><div class="card-body"><h3 data-i18n="c11t">Tinte de Cejas</h3><div class="price">$40</div><div class="small" data-i18n="c11s">⏱ 30min • Color natural</div><a href="https://wa.me/16503074574?text=Quiero%20Tinte%20de%20Cejas" data-i18n="book">Reservar</a></div></div></div>
+</div>
+<div class="section"><h2 data-i18n="testi.h2">Lo que dicen nuestras clientas</h2><p style="text-align:center;color:#666;margin-bottom:15px;font-size:14px" data-i18n="testi.note">* Ejemplos - Se reemplazarán por reseñas reales de Google</p><div class="testis"><div class="testi"><span data-i18n-html="t1">⭐⭐⭐⭐⭐<br>"Mis pestañas quedaron hermosas."</span><br><b data-i18n="t1n">- Maria G.</b></div><div class="testi"><span data-i18n-html="t2">⭐⭐⭐⭐⭐<br>"Super puntual y muy limpia."</span><br><b data-i18n="t2n">- Jessica L.</b></div><div class="testi"><span data-i18n-html="t3">⭐⭐⭐⭐⭐<br>"Reservé por WhatsApp en 1 minuto."</span><br><b data-i18n="t3n">- Ana P.</b></div></div></div>
+<div class="info"><h2 style="color:#4B2E6B" data-i18n-html="info.h2">📍 Visítanos - Cómo Llegar</h2><p data-i18n-html="info.body">California, USA<br>🕐 Lun - Sáb: 9am - 7pm • Dom: Cerrado<br>📱 WhatsApp: +1 (650) 307-4574</p><p style="margin-top:20px"><a class="btn" href="https://wa.me/16503074574?text=Hola%20quiero%20reservar%20cita" data-i18n="info.cta">Reservar Cita Ahora</a></p><iframe src="https://www.google.com/maps?q=California,USA&output=embed" loading="lazy"></iframe><p style="margin-top:10px"><a href="https://www.google.com/maps?q=California,USA" target="_blank" style="color:#4B2E6B;font-weight:700" data-i18n="info.maps">Abrir en Google Maps →</a></p></div>
+<div class="footer"><span data-i18n="footer.brand">LashLux - California • WhatsApp +1 (650) 307-4574 • Síguenos en Instagram</span><div class="legal"><a href="#" data-i18n="f.privacy">Política de Privacidad</a> • <a href="#" data-i18n="f.terms">Términos y Condiciones</a> • <a href="#" data-i18n="f.cancel">Política de Cancelación</a><br><span data-i18n="footer.copy">© 2026 LashLux. Todos los derechos reservados. Los precios pueden variar, confirma tu cita por WhatsApp.</span><br><span data-i18n="footer.demo">Este sitio es una demostración / ejemplo para presentación al cliente.</span></div><div class="credit"><img src="rw-logo.jpg" alt="Roger Web" style="width:90px;height:90px;object-fit:cover;border-radius:50%;border:2px solid #FF9EC6;margin-bottom:8px"><br><span data-i18n-html="footer.credit">Sitio web creado por ROGER WEB - MARKETING DIGITAL WEB</span></div></div>
+<script>
+const T={
+es:{
+"nav.home":"Inicio","nav.services":"Servicios","nav.lashes":"Pestañas","nav.brows":"Cejas","nav.nails":"Uñas","nav.prices":"Precios","nav.book":"Reservar",
+"tab.lashes":"Pestañas","tab.nails":"Uñas","tab.brows":"Cejas",
+"serv.h2":"Nuestros Servicios",
+"hero.eyebrow":"Estudio de Belleza Premium","hero.tagline":"Belleza refinada. Elegancia impecable.","hero.sub":"Extensiones de pestañas, diseño de cejas y nail art de autor. Reserva tu cita en segundos.","hero.cta":"Reservar por WhatsApp",
+"book":"Reservar",
+"c1t":"Extensiones Clásicas","c1s":"⏱ 1h 30min • Retoque $35",
+"c2t":"Volumen Híbrido","c2s":"⏱ 2h • Retoque $45",
+"c3t":"Lifting de Pestañas","c3s":"⏱ 1h • Dura 6 semanas",
+"c4t":"Manicure + Gel","c4s":"⏱ 1h • Brillo perfecto",
+"c5t":"Acrílicas","c5s":"⏱ 1h 30min • Diseño incluido",
+"c6t":"Diseño de Cejas","c6s":"⏱ 45min • Perfilado perfecto",
+"c7t":"Laminado","c7s":"⏱ 1h • Efecto peinado",
+"c8t":"Mega Volumen","c8s":"⏱ 2h 30min • Retoque $55",
+"c9t":"Efecto Wispy","c9s":"⏱ 1h 45min • Retoque $40",
+"c10t":"Nail Art","c10s":"⏱ 1h 15min • Diseño personalizado",
+"c11t":"Tinte de Cejas","c11s":"⏱ 30min • Color natural",
+"testi.h2":"Lo que dicen nuestras clientas","testi.note":"* Ejemplos - Se reemplazarán por reseñas reales de Google",
+"t1":"⭐⭐⭐⭐⭐<br>\"Mis pestañas quedaron hermosas.\"","t1n":"- Maria G.",
+"t2":"⭐⭐⭐⭐⭐<br>\"Super puntual y muy limpia.\"","t2n":"- Jessica L.",
+"t3":"⭐⭐⭐⭐⭐<br>\"Reservé por WhatsApp en 1 minuto.\"","t3n":"- Ana P.",
+"info.h2":"📍 Visítanos - Cómo Llegar",
+"info.body":"California, USA<br>🕐 Lun - Sáb: 9am - 7pm • Dom: Cerrado<br>📱 WhatsApp: +1 (650) 307-4574",
+"info.cta":"Reservar Cita Ahora","info.maps":"Abrir en Google Maps →",
+"footer.brand":"LashLux - California • WhatsApp +1 (650) 307-4574 • Síguenos en Instagram",
+"footer.copy":"© 2026 LashLux. Todos los derechos reservados. Los precios pueden variar, confirma tu cita por WhatsApp.",
+"footer.demo":"Este sitio es una demostración / ejemplo para presentación al cliente.",
+"footer.credit":"Sitio web creado por ROGER WEB - MARKETING DIGITAL WEB",
+"f.privacy":"Política de Privacidad","f.terms":"Términos y Condiciones","f.cancel":"Política de Cancelación"
+},
+en:{
+"nav.home":"Home","nav.services":"Services","nav.lashes":"Lashes","nav.brows":"Brows","nav.nails":"Nails","nav.prices":"Pricing","nav.book":"Book Now",
+"tab.lashes":"Lashes","tab.nails":"Nails","tab.brows":"Brows",
+"serv.h2":"Our Services",
+"hero.eyebrow":"Premium Beauty Studio","hero.tagline":"Refined beauty. Impeccable elegance.","hero.sub":"Lash extensions, brow design and nail art by professional artists. Book your appointment in seconds.","hero.cta":"Book on WhatsApp",
+"book":"Book",
+"c1t":"Classic Extensions","c1s":"⏱ 1h 30min • Touch-up $35",
+"c2t":"Hybrid Volume","c2s":"⏱ 2h • Touch-up $45",
+"c3t":"Lash Lift","c3s":"⏱ 1h • Lasts 6 weeks",
+"c4t":"Manicure + Gel","c4s":"⏱ 1h • Perfect shine",
+"c5t":"Acrylics","c5s":"⏱ 1h 30min • Design included",
+"c6t":"Brow Design","c6s":"⏱ 45min • Perfect shaping",
+"c7t":"Brow Lamination","c7s":"⏱ 1h • Brushed effect",
+"c8t":"Mega Volume","c8s":"⏱ 2h 30min • Touch-up $55",
+"c9t":"Wispy Effect","c9s":"⏱ 1h 45min • Touch-up $40",
+"c10t":"Nail Art","c10s":"⏱ 1h 15min • Custom design",
+"c11t":"Brow Tint","c11s":"⏱ 30min • Natural color",
+"testi.h2":"What our clients say","testi.note":"* Examples — will be replaced with real Google reviews",
+"t1":"⭐⭐⭐⭐⭐<br>\"My lashes turned out beautiful.\"","t1n":"- Maria G.",
+"t2":"⭐⭐⭐⭐⭐<br>\"Super punctual and very clean.\"","t2n":"- Jessica L.",
+"t3":"⭐⭐⭐⭐⭐<br>\"I booked on WhatsApp in 1 minute.\"","t3n":"- Ana P.",
+"info.h2":"📍 Visit Us — Directions",
+"info.body":"California, USA<br>🕐 Mon - Sat: 9am - 7pm • Sun: Closed<br>📱 WhatsApp: +1 (650) 307-4574",
+"info.cta":"Book Your Appointment Now","info.maps":"Open in Google Maps →",
+"footer.brand":"LashLux - California • WhatsApp +1 (650) 307-4574 • Follow us on Instagram",
+"footer.copy":"© 2026 LashLux. All rights reserved. Prices may vary, confirm your appointment on WhatsApp.",
+"footer.demo":"This site is a demo / example for client presentation.",
+"footer.credit":"Website created by ROGER WEB - DIGITAL WEB MARKETING",
+"f.privacy":"Privacy Policy","f.terms":"Terms & Conditions","f.cancel":"Cancellation Policy"
+}};
+let lang=localStorage.getItem('ll_lang')||'es';
+function applyLang(){
+ document.documentElement.lang=lang;
+ document.title=lang==='en'?'LashLux | Beauty Studio':'LashLux | Estudio de Belleza';
+ Object.keys(T[lang]).forEach(k=>{
+  document.querySelectorAll('[data-i18n="'+k+'"]').forEach(el=>el.textContent=T[lang][k]);
+  document.querySelectorAll('[data-i18n-html="'+k+'"]').forEach(el=>el.innerHTML=T[lang][k]);
+ });
+ document.getElementById('langBtn').textContent=lang==='es'?'EN':'ES';
+}
+function toggleLang(){lang=lang==='es'?'en':'es';localStorage.setItem('ll_lang',lang);applyLang();}
+applyLang();
+function showAll(){document.querySelectorAll('.grid').forEach(g=>g.style.display='grid');}
+function go(id){show(id);document.getElementById('servicios').scrollIntoView({behavior:'smooth'});}
+function show(id){document.querySelectorAll('.grid').forEach(g=>g.style.display='none');document.getElementById(id).style.display='grid';}
+</script>
+</body>
+</html>

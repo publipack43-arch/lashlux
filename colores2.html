@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más Colores - Beauty Bar</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0f0f0f;color:#fff;padding:20px}
+h1{font-size:28px;text-align:center} h1 span{color:#FFDCA8}
+p.sub{text-align:center;color:#aaa;margin:8px 0 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:900px;margin:0 auto}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.opt{border-radius:20px;padding:16px;cursor:pointer;border:2px solid transparent;text-align:left;background:#1e1e1e}
+.opt.active{border-color:#fff;transform:scale(1.02)}
+.opt b{font-size:16px;display:block;margin-bottom:10px}
+.bar{display:flex;height:48px;border-radius:12px;overflow:hidden;margin-bottom:10px}
+.bar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+.hex{font-size:12px;color:#ddd;line-height:1.7}
+.preview{max-width:900px;margin:22px auto;border-radius:24px;overflow:hidden;background:var(--c1)}
+.prev-hero{padding:35px 20px;text-align:center;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.prev-hero h2{font-size:30px;color:#fff}
+.prev-hero p{color:#fff;opacity:.85;margin:8px 0 15px}
+.prev-btn{display:inline-block;padding:12px 24px;border-radius:100px;background:var(--c3);color:#000;font-weight:800}
+.prev-cards{display:flex;gap:10px;padding:18px}
+.prev-cards div{flex:1;background:var(--c2);border-radius:16px;padding:16px;text-align:center}
+.note{max-width:900px;margin:10px auto;text-align:center;color:#888;font-size:13px}
+</style></head>
+<body>
+<h1>🎨 Más Colores <span>Beauty Bar</span></h1>
+<p class="sub">12 opciones. Tocá una y mirá abajo cómo se vería la web.</p>
+<div class="grid" id="grid"></div>
+<div class="preview" id="preview">
+<div class="prev-hero"><h2>Tu Mirada, En Otro Nivel</h2><p>Cejas • Pestañas • Uñas</p><span class="prev-btn">RESERVAR AHORA →</span></div>
+<div class="prev-cards"><div><b>Lash Lifting</b><br><span>Desde $65</span></div><div><b>Brow Lamination</b><br><span>Desde $55</span></div><div><b>Uñas</b><br><span>Desde $45</span></div></div>
+</div>
+<p class="note" id="note">Tocá una paleta arriba</p>
+<script>
+const paletas=[
+{name:"7. Champagne + Marrón + Dorado Brillo",c1:"#F7E7CE",c2:"#4A2C1A",c3:"#FFD700",desc:"Champagne caro. Se siente boda, fiesta, lujo."},
+{name:"8. Lavanda Suave + Morado + Rosa",c1:"#E6D9FF",c2:"#4B2E6B",c3:"#FF9EC6",desc:"Dulce, moderno, muy TikTok. Les encanta a las jóvenes."},
+{name:"9. Durazno + Terracota + Crema",c1:"#FFDAB9",c2:"#B85C38",c3:"#FFF5E6",desc:"Cálido, piel, verano. Bien Beauty."},
+{name:"10. Verde Salvia + Beige + Dorado",c1:"#D8E2D1",c2:"#5A6B4F",c3:"#C5A880",desc:"Spa, calma, natural. Se siente limpio y caro."},
+{name:"11. Vino Tinto + Nude + Dorado",c1:"#F3E2D8",c2:"#6B1D2A",c3:"#D4AF37",desc:"Poderosa. Mujeres fuertes, elegantes."},
+{name:"12. Turquesa + Negro + Fucsia",c1:"#B8F1E8",c2:"#111111",c3:"#FF2E9A",desc:"Atrevida. Frena el scroll. Bien Miami."},
+{name:"1. Beige Mocha Dorado",c1:"#E8C39A",c2:"#3A241A",c3:"#FFDCA8",desc:"La que tenemos ahora."},
+{name:"2. Mantequilla + Cacao + Azul",c1:"#F3E3B2",c2:"#3A2218",c3:"#2D5BFF",desc:"Del video."},
+{name:"3. Negro + Gris + Naranja",c1:"#121417",c2:"#D0D0D1",c3:"#FF5A1F",desc:"Marca cara."},
+{name:"4. Esmeralda + Lila + Voltio",c1:"#0B3D2E",c2:"#D0B8FF",c3:"#EFFE3A",desc:"Frena el scroll."},
+{name:"5. Rosa Nude + Café + Rosa Dorado",c1:"#F5D5D0",c2:"#5C2E2E",c3:"#E8B4A0",desc:"Femenina premium."},
+{name:"6. Negro Lujo + Dorado",c1:"#0A0A0A",c2:"#1E1E1E",c3:"#D4AF37",desc:"Beverly Hills."},
+];
+const grid=document.getElementById('grid');
+paletas.forEach((p,i)=>{
+let d=document.createElement('div');d.className='opt'+(i==0?' active':'');
+d.innerHTML=`<b>${p.name}</b><div class="bar"><div style="flex:6;background:${p.c1}">60%</div><div style="flex:3;background:${p.c2}">30%</div><div style="flex:1;background:${p.c3}">10%</div></div><div class="hex">60% ${p.c1} | 30% ${p.c2} | 10% ${p.c3}<br>${p.desc}<br><b style="color:#FFDCA8">👉 TOCAR</b></div>`;
+d.onclick=()=>{
+document.querySelectorAll('.opt').forEach(o=>o.classList.remove('active'));d.classList.add('active');
+let pv=document.getElementById('preview');pv.style.setProperty('--c1',p.c1);pv.style.setProperty('--c2',p.c2);pv.style.setProperty('--c3',p.c3);
+document.getElementById('note').innerText=`Elegiste: ${p.name} - Códigos: ${p.c1} / ${p.c2} / ${p.c3}`;
+document.getElementById('preview').scrollIntoView({behavior:'smooth', block:'center'});
+};grid.appendChild(d);
+});
+let pv=document.getElementById('preview');pv.style.setProperty('--c1','#F7E7CE');pv.style.setProperty('--c2','#4A2C1A');pv.style.setProperty('--c3','#FFD700');
+</script>
+</body></html>

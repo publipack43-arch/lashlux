@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorio de Colores - Beauty Bar</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0f0f0f;color:#fff;padding:20px}
+h1{font-size:28px;text-align:center} h1 span{color:#FFDCA8}
+p.sub{text-align:center;color:#aaa;margin:8px 0 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:900px;margin:0 auto}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.opt{border-radius:20px;padding:16px;cursor:pointer;border:2px solid transparent;text-align:left}
+.opt.active{border-color:#fff;transform:scale(1.02)}
+.opt b{font-size:17px;display:block;margin-bottom:10px}
+.bar{display:flex;height:48px;border-radius:12px;overflow:hidden;margin-bottom:10px}
+.bar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+.hex{font-size:12px;color:#ddd;line-height:1.7}
+/* PREVIEW */
+.preview{max-width:900px;margin:22px auto;border-radius:24px;overflow:hidden;background:var(--c1);transition:.3s}
+.prev-hero{padding:35px 20px;text-align:center;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.prev-hero h2{font-size:30px;color:#fff}
+.prev-hero p{color:#fff;opacity:.85;margin:8px 0 15px}
+.prev-btn{display:inline-block;padding:12px 24px;border-radius:100px;background:var(--c3);color:#000;font-weight:800}
+.prev-cards{display:flex;gap:10px;padding:18px}
+.prev-cards div{flex:1;background:var(--c2);border-radius:16px;padding:16px;text-align:center}
+.prev-cards b{color:#fff}.prev-cards span{color:#fff;opacity:.8;font-size:13px}
+.note{max-width:900px;margin:10px auto;text-align:center;color:#888;font-size:13px}
+</style></head>
+<body>
+<h1>🎨 Laboratorio de <span>Colores</span></h1>
+<p class="sub">Tocá una paleta. Abajo ves cómo se vería Beauty Bar. Regla 60-30-10.</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="preview" id="preview">
+<div class="prev-hero"><h2>Tu Mirada, En Otro Nivel</h2><p>Cejas • Pestañas • Uñas - Estudio Premium</p><span class="prev-btn">RESERVAR AHORA →</span></div>
+<div class="prev-cards"><div><b>Lash Lifting</b><br><span>Desde $65</span></div><div><b>Brow Lamination</b><br><span>Desde $55</span></div><div><b>Uñas</b><br><span>Desde $45</span></div></div>
+</div>
+<p class="note" id="note">Paleta actual: Beige Mocha Dorado</p>
+
+<script>
+const paletas=[
+{name:"1. Beauty Bar - Beige Mocha Dorado",c1:"#E8C39A",c2:"#3A241A",c3:"#FFDCA8",desc:"La que tenemos ahora. Elegante, tranquila, lujo suave."},
+{name:"2. Mantequilla + Cacao + Azul Eléctrico",c1:"#F3E3B2",c2:"#3A2218",c3:"#2D5BFF",desc:"Del video. El azul hace que el ojo vaya al botón."},
+{name:"3. Negro Metalizado + Gris + Naranja",c1:"#121417",c2:"#D0D0D1",c3:"#FF5A1F",desc:"Del video. Se siente marca cara, potente."},
+{name:"4. Esmeralda + Lila + Amarillo Voltio",c1:"#0B3D2E",c2:"#D0B8FF",c3:"#EFFE3A",desc:"Del video. Frena el scroll en seco."},
+{name:"5. Rosa Nude + Café + Dorado Rosa",c1:"#F5D5D0",c2:"#5C2E2E",c3:"#E8B4A0",desc:"Para Beauty Bar USA. Femenino, dulce, premium."},
+{name:"6. Negro Lujo + Dorado + Blanco",c1:"#0A0A0A",c2:"#1E1E1E",c3:"#D4AF37",desc:"Lujo total. Como salón de Beverly Hills."},
+];
+const grid=document.getElementById('grid');
+paletas.forEach((p,i)=>{
+let d=document.createElement('div');d.className='opt'+(i==0?' active':'');
+d.style.background='#1e1e1e';
+d.innerHTML=`<b>${p.name}</b><div class="bar"><div style="flex:6;background:${p.c1}">60%</div><div style="flex:3;background:${p.c2}">30%</div><div style="flex:1;background:${p.c3}">10%</div></div><div class="hex">60% ${p.c1} &nbsp;|&nbsp; 30% ${p.c2} &nbsp;|&nbsp; 10% ${p.c3}<br>${p.desc}<br><b style="color:#FFDCA8">👉 TOCAR PARA PREVISUALIZAR</b></div>`;
+d.onclick=()=>{
+document.querySelectorAll('.opt').forEach(o=>o.classList.remove('active'));d.classList.add('active');
+let pv=document.getElementById('preview');pv.style.setProperty('--c1',p.c1);pv.style.setProperty('--c2',p.c2);pv.style.setProperty('--c3',p.c3);
+document.getElementById('note').innerText=`Paleta actual: ${p.name} - Copiá estos códigos: ${p.c1} / ${p.c2} / ${p.c3}`;
+};
+grid.appendChild(d);
+});
+// inicial
+let pv=document.getElementById('preview');pv.style.setProperty('--c1','#E8C39A');pv.style.setProperty('--c2','#3A241A');pv.style.setProperty('--c3','#FFDCA8');
+</script>
+</body></html>
